@@ -24,15 +24,39 @@
       border-radius: 5px;
       border: 1px solid #ccc;
     }
+    label {
+      font-size: 14px;
+      margin-top: 10px;
+      display: block;
+      color: #555;
+    }
     button {
       background: #25D366;
       color: white;
       border: none;
       font-size: 16px;
       cursor: pointer;
+      margin-top: 15px;
     }
     h2 {
       text-align: center;
+    }
+
+    /* Footer styles */
+    footer {
+      text-align: center;
+      font-size: 13px;
+      color: #666;
+      margin-top: 20px;
+    }
+    footer a {
+      color: #0077b5;
+      text-decoration: none;
+      margin: 0 5px;
+      font-weight: bold;
+    }
+    footer a.instagram {
+      color: #E1306C;
     }
   </style>
 </head>
@@ -45,7 +69,6 @@
   <input id="name" placeholder="Your Name" required>
   <input id="contact" type="tel" placeholder="Contact Number" required>
 
-  <!-- Location Dropdown -->
   <select id="location" required>
     <option value="">Select Location</option>
     <option>Bhubaneswar</option>
@@ -55,53 +78,70 @@
   <input id="from" placeholder="From" required>
   <input id="to" placeholder="To" required>
 
+  <label>Select Date</label>
   <input id="date" type="date" required>
+
+  <label>Select Time</label>
   <input id="time" type="time" required>
 
-  <select id="vehicle">
-    <option>Bike</option>
+  <select id="vehicle" required>
+    <option value="">Select Vehicle Type</option>
     <option>Car</option>
-    <option>Auto</option>
-    <option>Bus</option>
+    <option>Bike</option>
+    <option>Scooty</option>
   </select>
 
   <input id="fare" placeholder="Expected Fare (₹)" required>
 
   <button onclick="sendToWhatsApp()">Send to WhatsApp</button>
+
+  <!-- Footer -->
+  <footer>
+    <p><strong>Contact Us</strong></p>
+    <p>
+            <a href="mailto:djparhi2002@gmail.com">
+       Email
+    </a> |
+      <a class="instagram" href="https://www.instagram.com/deadline_dorkxx?igsh=ZWd3enEzMW0zeGNh" >Instagram</a> |
+      <a href="https://www.linkedin.com/in/dibyajyotiparhi" target="_blank">LinkedIn</a> 
+
+    </p>
+    <p>© 2026 All Rights Reserved</p>
+    <p>Created by <strong>Dibyajyoti</strong></p>
+  </footer>
 </div>
 
 <script>
 function sendToWhatsApp() {
 
-  var name = document.getElementById("name").value;
-  var contact = document.getElementById("contact").value;
-  var location = document.getElementById("location").value;
-  var from = document.getElementById("from").value;
-  var to = document.getElementById("to").value;
-  var date = document.getElementById("date").value;
-  var time = document.getElementById("time").value;
-  var vehicle = document.getElementById("vehicle").value;
-  var fare = document.getElementById("fare").value;
+  var nameVal = name.value;
+  var contactVal = contact.value;
+  var locationVal = location.value;
+  var fromVal = from.value;
+  var toVal = to.value;
+  var dateVal = date.value;
+  var timeVal = time.value;
+  var vehicleVal = vehicle.value;
+  var fareVal = fare.value;
 
-  if(location === ""){
-    alert("Please select a location");
+  if(locationVal === "" || vehicleVal === ""){
+    alert("Please select all dropdown values");
     return;
   }
 
   var message =
     "🚕 *Travel Requirement*\n\n" +
-    "👤 Name: " + name + "\n" +
-    "📞 Contact: " + contact + "\n\n" +
-    "📍 Location: " + location + "\n" +
-    "➡️ From: " + from + "\n" +
-    "🏁 To: " + to + "\n" +
-    "📅 Date: " + date + "\n" +
-    "⏰ Time: " + time + "\n" +
-    "🚘 Vehicle: " + vehicle + "\n" +
-    "💰 Expected Fare: ₹" + fare;
+    "👤 Name: " + nameVal + "\n" +
+    "📞 Contact: " + contactVal + "\n\n" +
+    "📍 Location: " + locationVal + "\n" +
+    "➡️ From: " + fromVal + "\n" +
+    "🏁 To: " + toVal + "\n" +
+    "📅 Date: " + dateVal + "\n" +
+    "⏰ Time: " + timeVal + "\n" +
+    "🚘 Vehicle: " + vehicleVal + "\n" +
+    "💰 Expected Fare: ₹" + fareVal;
 
-  var url = "https://wa.me/?text=" + encodeURIComponent(message);
-  window.open(url, "_blank");
+  window.open("https://wa.me/?text=" + encodeURIComponent(message), "_blank");
 }
 </script>
 
