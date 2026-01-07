@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Travel Requirement Form</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    body {
+      font-family: Arial;
+      background: #f2f2f2;
+      padding: 20px;
+    }
+    .box {
+      background: white;
+      padding: 20px;
+      border-radius: 10px;
+      max-width: 400px;
+      margin: auto;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    }
+    input, select, button {
+      width: 100%;
+      padding: 10px;
+      margin-top: 10px;
+      border-radius: 5px;
+      border: 1px solid #ccc;
+    }
+    button {
+      background: #25D366;
+      color: white;
+      border: none;
+      font-size: 16px;
+      cursor: pointer;
+    }
+    h2 {
+      text-align: center;
+    }
+  </style>
+</head>
+
+<body>
+
+<div class="box">
+  <h2>🚕 Travel Requirement</h2>
+
+  <input id="name" placeholder="Your Name" required>
+  <input id="contact" type="tel" placeholder="Contact Number" required>
+
+  <!-- Location Dropdown -->
+  <select id="location" required>
+    <option value="">Select Location</option>
+    <option>Bhubaneswar</option>
+    <option>Kolkata</option>
+  </select>
+
+  <input id="from" placeholder="From" required>
+  <input id="to" placeholder="To" required>
+
+  <input id="date" type="date" required>
+  <input id="time" type="time" required>
+
+  <select id="vehicle">
+    <option>Bike</option>
+    <option>Car</option>
+    <option>Auto</option>
+    <option>Bus</option>
+  </select>
+
+  <input id="fare" placeholder="Expected Fare (₹)" required>
+
+  <button onclick="sendToWhatsApp()">Send to WhatsApp</button>
+</div>
+
+<script>
+function sendToWhatsApp() {
+
+  var name = document.getElementById("name").value;
+  var contact = document.getElementById("contact").value;
+  var location = document.getElementById("location").value;
+  var from = document.getElementById("from").value;
+  var to = document.getElementById("to").value;
+  var date = document.getElementById("date").value;
+  var time = document.getElementById("time").value;
+  var vehicle = document.getElementById("vehicle").value;
+  var fare = document.getElementById("fare").value;
+
+  if(location === ""){
+    alert("Please select a location");
+    return;
+  }
+
+  var message =
+    "🚕 *Travel Requirement*\n\n" +
+    "👤 Name: " + name + "\n" +
+    "📞 Contact: " + contact + "\n\n" +
+    "📍 Location: " + location + "\n" +
+    "➡️ From: " + from + "\n" +
+    "🏁 To: " + to + "\n" +
+    "📅 Date: " + date + "\n" +
+    "⏰ Time: " + time + "\n" +
+    "🚘 Vehicle: " + vehicle + "\n" +
+    "💰 Expected Fare: ₹" + fare;
+
+  var url = "https://wa.me/?text=" + encodeURIComponent(message);
+  window.open(url, "_blank");
+}
+</script>
+
+</body>
+</html>
